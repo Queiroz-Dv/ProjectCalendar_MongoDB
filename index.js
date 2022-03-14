@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const moongose = require("mongoose");
+const { request } = require("http");
 
 app.use(express.static("public"));
 
@@ -16,4 +17,8 @@ app.get("/", (request, response) => {
   response.send("Testando");
 });
 
+
+app.get("/cadastro", (request, response) => {
+  response.render("create");
+});
 app.listen(9090);
