@@ -66,6 +66,11 @@ app.get("/list", async (request, response) => {
 
 app.get("/searchresult", async (request, response) => {
   var appos = await AppointmentService.Search(request.query.search)
-  response.render("list",{appos});
+  response.render("list", { appos });
 });
+
+var pollTime = 1000 * 60 * 5;
+setInterval(async () => {
+  await AppointmentService.SendNotification();
+}, pollTime)
 app.listen(9090);
